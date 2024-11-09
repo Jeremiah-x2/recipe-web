@@ -12,16 +12,19 @@ import {
 } from "./ui/drawer";
 import { Button } from "./ui/button";
 import { SearchIcon } from "lucide-react";
+// import { useRouter } from "next/navigation";
+import Link from "next/link";
 const time2 = ["Newest", "Oldest", "Popularity"];
 export default function SearchInput() {
-  const [time, setTime] = useState([
-    { time: "Newest", isSelected: true },
-    { time: "Oldest", isSelected: false },
-    { time: "Popularity", isSelected: false },
-  ]);
-  // const [selectedTime]
+  // const [time, setTime] = useState([
+  //   { time: "Newest", isSelected: true },
+  //   { time: "Oldest", isSelected: false },
+  //   { time: "Popularity", isSelected: false },
+  // ]);
+  const [selectedTime, setSelectedTime] = useState<string>("");
   const [rating, setRating] = useState<number | null>(null);
   const [search, setSearch] = useState<string>("");
+  // const router = useRouter();
   return (
     <div className="py-5 flex gap-5">
       <div className="relative flex-1">
@@ -35,7 +38,24 @@ export default function SearchInput() {
         />
         {search !== "" && (
           <Button className="absolute right-0 top-1/2 -translate-y-1/2 h-full bg-primary100">
-            <SearchIcon size={32} className="" onClick={() => {}} />
+            <Link
+              href={`/search?query=${search}${
+                selectedTime !== "" ? `&time=${selectedTime.toLowerCase()}` : ""
+              }`}
+            >
+              <SearchIcon
+                size={32}
+                className=""
+                // onClick={() => {
+                //   router.push(
+                //     `/search?query=${search}${
+                //       selectedTime !== "" &&
+                //       `time=${selectedTime.toLowerCase()}`
+                //     }`
+                //   );
+                // }}
+              />
+            </Link>
           </Button>
         )}
       </div>
@@ -52,31 +72,35 @@ export default function SearchInput() {
             <div className="space-y-2">
               <h4 className="text-sm font-semibold">Time</h4>
               <div className={`flex gap-[10px]`}>
-                {time.map((item, index) => (
+                {time2.map((item, index) => (
                   <div
                     key={index}
                     className={`text-xs px-[10px] py-[5px] rounded-lg ${
-                      item.isSelected
+                      item === selectedTime
                         ? "bg-primary100 text-white"
                         : "bg-white text-primary100 border border-primary100 "
                     }`}
                     onClick={() => {
-                      setTime((prev) =>
-                        [...prev].map((time, i) => {
-                          if (index === i) {
-                            if (time.isSelected) {
-                              return { ...time, isSelected: false };
-                            } else {
-                              return { ...time, isSelected: true };
-                            }
-                          } else {
-                            return { ...time, isSelected: false };
-                          }
-                        })
-                      );
+                      // setTime((prev) =>
+                      //   [...prev].map((time, i) => {
+                      //     if (index === i) {
+                      //       if (time.isSelected) {
+                      //         return { ...time, isSelected: false };
+                      //       } else {
+                      //         return { ...time, isSelected: true };
+                      //       }
+                      //     } else {
+                      //       return { ...time, isSelected: false };
+                      //     }
+                      //   })
+                      // );
+                      if (selectedTime === item) setSelectedTime("");
+                      else {
+                        setSelectedTime(item);
+                      }
                     }}
                   >
-                    {item.time}
+                    {item}
                   </div>
                 ))}
               </div>
