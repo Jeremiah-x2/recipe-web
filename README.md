@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍲 RecipeFinder
 
-## Getting Started
+RecipeFinder is a sleek and interactive recipe management web application that allows users to discover, save, and manage their favorite recipes. Built with **Next.js**, **Tailwind CSS**, and **Shadcn UI** for a responsive and modern UI, RecipeFinder integrates with **Spoonacular** for recipe data and **Firebase** for secure authentication and storage.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **User Authentication** - Secure sign-in and sign-up using Firebase Authentication.
+- **Recipe Discovery** - Browse a collection of random recipes sourced from Spoonacular.
+- **Keyword-Based Search** - Find recipes based on ingredients, dish names, or other keywords.
+- **Save Recipes** - Save recipes directly to your account, accessible anytime.
+- **Custom Recipe Management** - Add your own custom recipes to personalize your experience.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Technologies Used
 
-## Learn More
+- **Next.js** - React framework for building fast and dynamic user interfaces.
+- **Tailwind CSS** - Utility-first CSS framework for easy and flexible styling.
+- **Shadcn UI** - Component library for consistent and polished UI elements.
+- **Spoonacular API** - Recipe and food data API for powering recipe discovery.
+- **Firebase** - Authentication and Firestore for secure and reliable user data storage.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📸 Screenshots
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Home Page
 
-## Deploy on Vercel
+Displays a list of random recipes and a search bar to find recipes by keyword.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Recipe Detail
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+View detailed instructions, ingredients, and nutrition information for each recipe.
+
+### Saved Recipes
+
+View and manage recipes saved to your account.
+
+### Add Custom Recipe
+
+Create and add your own recipes to manage within your account.
+
+---
+
+## 📦 Installation
+
+### Prerequisites
+
+- Node.js and npm installed
+- Firebase project with Firestore and Authentication enabled
+- Spoonacular API Key
+
+### Setup
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/yourusername/recipefinder.git
+   cd recipefinder
