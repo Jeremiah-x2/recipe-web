@@ -3,7 +3,11 @@ import { RecipesProp } from "@/components/home/random-recipes-item";
 import { useEffect, useState } from "react";
 
 export default function useFetch(url: string, query?: string) {
-  const [data, setData] = useState<{ recipes: RecipesProp[] } | null>(null);
+  const [data, setData] = useState<{
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    results: any;
+    recipes: RecipesProp[];
+  } | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [error, setError] = useState<any | null>(null);

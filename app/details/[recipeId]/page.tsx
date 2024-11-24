@@ -29,9 +29,8 @@ export default async function RecipeDetails({
   params: { recipeId: string };
 }) {
   const recipe = await getData(`${params.recipeId}/information`);
-  console.log("Recipe information", recipe);
   return (
-    <main className="space-y-[10px] max-w-[600px] mx-auto">
+    <main className="space-y-[10px] max-w-[400px] mx-auto">
       <div className="flex justify-between items-center">
         <BackBtn />
         <Popover>
@@ -72,7 +71,7 @@ export default async function RecipeDetails({
 
       <div className="max-w-[315px mb-8">
         <div className="space-y-[10px] mb-4">
-          <div className="h-[150px] relative bg-primary60 rounded-lg overflow-hidden">
+          <div className="h-[150px] sm:h-[200px] relative bg-primary60 rounded-lg overflow-hidden">
             <Image
               src={recipe.image}
               fill={true}
@@ -97,7 +96,7 @@ export default async function RecipeDetails({
               </div>
             </div>
           </div>
-          <div className="">{recipe.title}</div>
+          <div className="text-secondary100 font-bold">{recipe.title}</div>
         </div>
 
         <Tabs defaultValue="ingredient">
@@ -123,7 +122,7 @@ export default async function RecipeDetails({
                     key={index}
                     className="min-h-[76px] px-[15px] py-3 rounded-lg bg-gray4 flex gap-4 items-center"
                   >
-                    <div className="w-[52px] h-[52px] rounded-lg bg-white flex items-center justify-center">
+                    <div className="w-[52px] h-[52px]  rounded-lg bg-white flex items-center justify-center">
                       <div className="w-10 h-10 bg-gray4 rounded-md relative">
                         <Image
                           src={`https://img.spoonacular.com/ingredients_250x250/${item.image}`}

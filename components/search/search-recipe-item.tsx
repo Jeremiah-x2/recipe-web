@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Star } from "lucide-react";
+import { RecipesProp } from "../home/random-recipes-item";
 
-export default function SearchRecipeItem({ recipe }) {
+export default function SearchRecipeItem({ recipe }: { recipe: RecipesProp }) {
   return (
     <div className="w-[150px] h-[150px] relative rounded-[10px] bg-primary80 overflow-hidden">
       <Image

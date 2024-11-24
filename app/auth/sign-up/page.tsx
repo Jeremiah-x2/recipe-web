@@ -60,6 +60,7 @@ export default function SignIn() {
         password
       );
       const collectionRef = doc(db, "users", createUser.user.uid);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const userDoc = await setDoc(collectionRef, {
         avatar: "",
         bio: "",
@@ -67,7 +68,6 @@ export default function SignIn() {
         createdAt: serverTimestamp(),
       });
       Cookies.set("userToken", await createUser.user.getIdToken());
-      console.log(userDoc);
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -75,7 +75,7 @@ export default function SignIn() {
   }
 
   return (
-    <main className="min-h-[100dvh] flex items-center">
+    <main className="min-h-[100dvh] max-w-[400px] flex items-center">
       <div className="w-full">
         <div className="mb-[57px]">
           <h4 className="font-semibold text-3xl">Create an account</h4>

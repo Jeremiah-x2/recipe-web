@@ -9,6 +9,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: { sm: "480px" },
       colors: {
         gray1: "#484848",
         gray2: "#797979",

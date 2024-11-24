@@ -26,7 +26,7 @@ export default function SearchInput() {
   const [search, setSearch] = useState<string>("");
   // const router = useRouter();
   return (
-    <div className="py-5 flex gap-5">
+    <div className="py-5 flex gap-5 max-w-[600px] mx-auto">
       <div className="relative flex-1">
         <Search className="absolute top-1/2 -translate-y-1/2 left-[10px]" />
         <Input

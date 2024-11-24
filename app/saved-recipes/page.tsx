@@ -18,14 +18,14 @@ export default async function SavedRecipes() {
 
   if (!userToken) {
     return (
-      <div>
+      <main className="flex items-center justify-center h-[100dvh] flex-col gap-4">
         <h3 className="font-semibold text-xl">
           Login to see your saved recipes
         </h3>
         <Link href={"/auth/sign-in"}>
           <Button className="bg-primary100 font-semibold">Login</Button>
         </Link>
-      </div>
+      </main>
     );
   } else {
     const authUser = await adminAuth.verifyIdToken(userToken.value);
@@ -43,7 +43,6 @@ export default async function SavedRecipes() {
     data.forEach((doc) => {
       savedRecipes.push({ id: doc.id, ...(doc.data() as SavedRecipe) });
     });
-    console.log(savedRecipes.length);
 
     return (
       <main>
@@ -51,12 +50,13 @@ export default async function SavedRecipes() {
           Saved Recipes
         </h3>
 
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 w-full items-center justify-center">
           {savedRecipes.map((item, index) => (
             <div
               key={index}
-              className="h-[150px] relative max-w-[315px] bg-primary80 rounded-lg overflow-hidden"
+              className="h-[150px] relative w-[315px] bg-primary80 rounded-lg overflow-hidden"
             >
+              dfhkjhdfgkfdjk
               <Image src={item.image} fill={true} alt="Recipe" />
               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black to-[rgba(0,0,0,0)] flex flex-col justify-between p-[10px]">
                 <div className="px-[7px] py-[2px] rounded-full flex items-center gap-1 bg-secondary20 self-end">

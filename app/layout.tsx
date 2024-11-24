@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "./StoreProvider";
 import Footer from "@/components/footer";
+// import ReactQueryProvider from "@/components/ReactQueryProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,13 +21,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${poppins} antialiased px-[30px] py-6 pb-28 overflow-x-hidden`}
-      >
-        <StoreProvider>{children}</StoreProvider>
-        <Footer />
-      </body>
-    </html>
+    <>
+      <html lang="en">
+        <body
+          className={`${poppins} antialiased px-[30px] py-6 pb-28 overflow-x-hidden`}
+        >
+          {/* <ReactQueryProvider> */}
+          <StoreProvider>{children}</StoreProvider>
+          {/* </ReactQueryProvider> */}
+          <Footer />
+        </body>
+      </html>
+    </>
   );
 }

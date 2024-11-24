@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -49,15 +49,15 @@ export function EditUsername() {
     <>
       <Dialog>
         <DialogTrigger>
-          <Pen />
-          {/* <TooltipProvider>
+          {/* <Pen /> */}
+          <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
                 <Pen size={18} />
               </TooltipTrigger>
               <TooltipContent>Edit username</TooltipContent>
             </Tooltip>
-          </TooltipProvider> */}
+          </TooltipProvider>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -115,15 +115,15 @@ export function EditBio() {
     <>
       <Dialog>
         <DialogTrigger>
-          {/* <TooltipProvider>
+          <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
                 <Pen size={18} />
               </TooltipTrigger>
               <TooltipContent>Edit Bio</TooltipContent>
             </Tooltip>
-          </TooltipProvider> */}
-          <Pen />
+          </TooltipProvider>
+          {/* <Pen /> */}
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>

@@ -1,15 +1,16 @@
-import admin from "firebase-admin";
+import admin, { ServiceAccount } from "firebase-admin";
+import { getApps } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
-if (!admin.app.length) {
+const serviceAccount: ServiceAccount = {
+  projectId: "recipes-b4425",
+  privateKey:
+    "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCdCTA+mNVtSTqZ\nrZzMDdpPjCYvJ6l0QAzbB1crDnjLSM0jzomEYcGwrmCdEPFYu8GrAxIjZvkXKxQP\npWecDae2hSWlw2v+IKWy0X3zsVO78zFghVA9bdfSa8ss46tA3P78KmCMguvBB7Rr\nFd6v6+ZTD8eozxPbLr3jqcKcHSDtTI4/7EZDD5TVsRqK8CvQqk3IJxJgelERftmi\nudevpnAKKZfYgHhXayDpq3JwQNR/rQ+Yy0dXvQTIkN7Xr0xw80OvbINIKHiDsSTw\nJ1Gr4E0rN1K9HedF7bITbnSW56TtCYcS3Fv+bqgCCTdyf1iByjoeYGEYIrkWoIXQ\n4fifo2ADAgMBAAECggEAB5ITVNk6ZNfkbtc7WW0Lis03ZAuV9EhINmD+t1EtyqMa\nXLEO2SZ7V4C4oKnZ8MywdAWkYLeMp6zIfU6clZ3k6Xw2yeyHbst1IY9O8qooXsXF\nKiGTMjry7i6LL4FUVr6wvkhuuidvpTExZf46a6HES1nV5tIA44630dtzyeHvnfEB\nD1lU+XZaP810xrrJNy1Fd+O0RwI9IpHeT/oSRRUkwKZ0ws18fVOpPXiiHuUsynry\nITY9iTkgX55joPbQjRkqGzs+HkXOKVnPAZ1B/ILSRxcfFEZl3ToPwMS1zzVETsv8\njL8oBMLxZ+vOPZCedd1Jkx6lipgCDcZve5A55jValQKBgQDKC612+IUHOtXJAbye\nsxM70WCzAC+8bYdjJR3augndbU/Eod2VuYPFmTumiOEYhY95aQZ8gLTUQHwi/wJ3\nyGUqxIr7uvfU5OQQAl5zEQ4GOII6zGdEaYKLEo1VGGl7I8akOsXs9C8L4nkTkDj2\nKwKuNScA16+LDd1TNe3LYDg6RwKBgQDG+InQKJsGUf+HztZ1GDP22RCozviH2p45\nC52rb3DAU+k6IqS5ohB4wZla6VXLKB5ts5uSIAXU/lD/JmIVXUPSJnJqTNJKUU16\na2SsY0Dk37cQnaoGgyJvAiNlQ4AGiPGW54Gb5PB5k7IoZCuQCegfqyQDQWsQuHeU\ne/HUfVeOZQKBgADySw66nUzqXqQBaRPJPPbTxUMxZgfY74BsZRZoNrGd2HjQVUxl\nQRPE4v2luIA35/MmpcwhgjdYUfyL+0P6YVbw8sG5H34U0Giuyih51Pn8e8ewu28b\nm2vxW04hviTAhyavy8uPXUUN+4k27L1ieDG+t/8OA5mAKCBCqWmBeuHzAoGAdj/d\nf6WyRHZVHDxT/jFNKMZmfTzMPckywYpiwTEw3EzCTneqWFy1116PqpUEFQIZ226j\n5Zs8fBJMxubj4fiUxv9sfjp7vAlHt5q9sSonth4y6SAanVYwD7NAn/0WyEt48QtT\nXvgX5tldR14I+ci5eKC4fWrSm5RWFRv4ZCW99HUCgYEAlnVz9OkljputAgvQBNR7\nSvHTUHBSIbFes7LDry77O9k9lt6ljsbawHJl+d7P9RrB5oRbA310japKBwpqtJiX\nRVXgiFYtVEWy0bqcrZehS4zdTU5GC/f/p41QNdLKfVNFJSjd59Re8gm7jT3Hz2cJ\nTIrn7oYg9il3jcGYmpHTMwE=\n-----END PRIVATE KEY-----\n",
+  clientEmail: "firebase-adminsdk-1hwiy@recipes-b4425.iam.gserviceaccount.com",
+};
+if (getApps.length <= 0) {
   admin.initializeApp({
-    credential: admin.credential.cert({
-      clientEmail:
-        "firebase-adminsdk-1hwiy@recipes-b4425.iam.gserviceaccount.com",
-      privateKey:
-        "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCk7yRPP/Od1fGK\n9xunbDbgt+9Tz6uNciuOzOl1d17VjNGnDJPyMMe1QWlwoj1X2Z6vekBLrBs2+Cml\nc/ju7Us4rQWWQxsBnRnQsbxR0ITTpc8DZfLBVDIiZbm5lGu7SgO3usQWifrtwFxv\n4UOB3jxKccPIUU8BWdZu6N1faabLGHCK8/23BBWOC64WkR0xMp17L4DaMUMVRzxE\nCY/ly/t5lTG5rB9HfdhDpggGd15HmiNqKaTvtn4qGAv3Avc+2uvt+Wb/HUdG2+o/\nHXtGxggXc/zxTBX9k6SJqIm2oW2XJ+UJQcicxpI/AJnlIn9ATzNt2wrt5UrMUXfF\n++GOogq9AgMBAAECggEAAJo+IcJYdPuPDNR//ZbPHLGt3aNJWKXjKx7JVHORrs0H\nBzg9f2Pzl4qB8yT5q/ATcTBj6Xc4Qmm9B8Eb7esmRPg7v33SQ9gETYjSIxEaQalP\noPfGyEqnT6+sz2wmyd70Hp0z6Vvk3F0HHzyZHCAGBqH1H3RwlZToBk/Ju/cV+cLz\norlYFR7dOP/2JumEnKhDCYGovVv3dZKNVU2OZgNi+bZ6HBA8UzjwEIqpC6sw0pVK\nmVqPP+qlQHK+ehbyrHb1ojx9rDR2INOnzBxfh1sCTbgek+UHxuJJRnkAlAT/a8Gy\nQc6KrqvhUQHE0+c7ZvybrrO6tjP1oRke2PnS9RTTrwKBgQDaOy1N+QK0VHjSE+qb\nevXVNS19SGPNbKuZCbDsEHHgMdcPEioxKfZg30jHpDBYdbclkatJWCKwDDDqsmee\nqzwoAkeYpFzGIj2KL8Vin1kM44Nv/BZZ9IBuDY7As32KjHB1UtObYgywkROjoFW5\nGPXiVNJQBA2Y3D1e0sORM4VJrwKBgQDBep5PAihJBPsl7VNd/plDZLXhCmmslqkn\nPzpKLlVnbzY7i5RfjfZE9mxfFyANG/vgbjhnCicwPw49S9UAQimSYLK6zO0n7+tt\nMKZ98cASGDhcuiMU1JAzAAIb6IVaoOzKHRqWqu+Nz8Koj31eJivWIws0NJuOZRgX\nrjZke2wJUwKBgQDHCaQXcp6Z1FVh3VJjvnEKpXa4xlZoXM3hRap8k78Y6Lwp/bpH\nnuscjWm21DRX6f1BoatkuKLiiCvxUwgY+jpijzm3qWkIOOCB8XIIsicpDzSo5XWJ\nU+vy9CCX9tzwiYhkKUfgdzv1qkwMN8cXjAFvDUfIPPodyfmbS4WdIC1X9wKBgH03\nzaNWwxnXBnAac90efLS4RloaMiBH9bv32NLPv+hMeq34/RMGvr8NOUAlqFGzrcUn\nsItHb+tys9WJ8ZXUPDGHMcViAY7aYOTvGqHiRyuuzzN8KF4/3/+R3suPJldsVTPN\nuDqQ8K84KkSLcVjwnWhej86+yXpUBU62Km/HzTkPAoGBAICo65+5+n8roegZT+qb\n38HOUEOizdoThj7tC069pRvm/xsrgPmqFU/5OlB8mm9B41GWwqJPLR5pECc4w9Lh\nvI7NoE7zkZgri8AB62XVkeqzQxISAln3Y/Nb36fMUqMH1n55DxV6aXvQ+YQmyWNC\nGT0VN7VOB9LL2jODAP40iIq/\n-----END PRIVATE KEY-----\n",
-      projectId: "recipes-b4425",
-    }),
+    credential: admin.credential.cert(serviceAccount),
   });
 }
 

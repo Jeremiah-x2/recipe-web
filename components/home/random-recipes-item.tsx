@@ -35,7 +35,7 @@ export default function RandomRecipesItem({
           className=" flex items-end self-end"
         >
           <Link href={`/details/${item.id}`}>
-            <div className="w-[150px] h-[176px] relative bg-gray4 rounded-lg flex flex-col pt-16 px-[10px] pb-[10px]">
+            <div className="w-[150px] h-[176px] relative bg-gray4 bg-opacity-40 rounded-lg flex flex-col pt-16 px-[10px] pb-[10px]">
               <div className="w-[109px] flex-1 h-[110px] mx-auto absolute top-0 border-2 border-primary100 -translate-y-1/2 bg-gray3 rounded-full left-1/2 -translate-x-1/2 shadow-[0_0_4px_2px_rgba(0,0,0,0.3)]">
                 <Image
                   src={item.image}
@@ -50,7 +50,7 @@ export default function RandomRecipesItem({
                 </p>
                 <div className="flex justify-between items-end">
                   <div className="text-xs">
-                    <p className="text-gray3">Time</p>
+                    <p className="text-primary100">Time</p>
                     <p className="text-gray1 font-semibold">
                       {item.readyInMinutes} Mins
                     </p>

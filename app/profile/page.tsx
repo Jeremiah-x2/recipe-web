@@ -1,20 +1,23 @@
 import { EditBio, EditUsername } from "@/components/profile/edit-profile";
+import { Button } from "@/components/ui/button";
 
-import admin, { adminAuth, adminDB } from "@/config/firebaseAdmin";
+import { adminAuth, adminDB } from "@/config/firebaseAdmin";
 import { Ellipsis } from "lucide-react";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import React from "react";
 
 export default async function ProfilePage() {
-  console.log("Firebase admin sdk", typeof admin.app.length);
   const cookie = cookies();
   const token = cookie.get("userToken");
   if (!token) {
     return (
-      <div className="w-full h-[100dvh] flex justify-center items-center">
-        <Link href={"/auth/sign-in"}></Link>
-      </div>
+      <main className="flex items-center justify-center h-[100dvh] flex-col gap-4">
+        <h3 className="font-semibold text-xl">Login to view profile</h3>
+        <Link href={"/auth/sign-in"}>
+          <Button className="bg-primary100 font-semibold">Login</Button>
+        </Link>
+      </main>
     );
   } else {
     const userId = await adminAuth.verifyIdToken(token.value);

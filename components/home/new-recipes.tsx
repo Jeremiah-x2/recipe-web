@@ -13,8 +13,8 @@ import "swiper/css/mousewheel";
 export default function NewRecipes() {
   const { data: recipes, isLoading } = useFetch("/random", "number=8");
   return (
-    <div className="mt-5 space-y-16">
-      <p className="font-semibold">New Recipes</p>
+    <main className="mt-5 space-y-16 overflow-x-hidden">
+      <p className="font-semibold text-lg text-secondary100">New Recipes</p>
       {recipes && (
         <Swiper
           slidesPerView={"auto"}
@@ -36,7 +36,7 @@ export default function NewRecipes() {
                     <p className="line-clamp-1 w-8/12 font-semibold">
                       {recipe.title}
                     </p>
-                    <div className="absolute w-[80px] overflow-visible h-[80px] border-2 border-primary100 rounded-full top-0 right-0 -translate-y-1/2 z-40 shadow-[0_0_8px_rgba(0,0,0,0.5)]">
+                    <div className="absolute bg-gray4 w-[80px] overflow-visible h-[80px] border-2 border-primary100 rounded-full top-0 right-0 -translate-y-1/2 z-40 shadow-[0_0_8px_rgba(0,0,0,0.5)]">
                       <Image
                         src={recipe.image}
                         fill={true}
@@ -68,11 +68,11 @@ export default function NewRecipes() {
               key={index}
               style={{ width: 251, height: 91, overflow: "visible" }}
             >
-              <Skeleton className="w-full h-[91px]" />
+              <Skeleton className="w-[251px] h-[91px]" />
             </SwiperSlide>
           ))}
         </Swiper>
       )}
-    </div>
+    </main>
   );
 }

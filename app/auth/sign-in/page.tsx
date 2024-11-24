@@ -47,7 +47,6 @@ export default function SignIn() {
         email,
         password
       );
-      console.log(signInUser);
       Cookies.set("userToken", await signInUser.user.getIdToken());
       router.push("/");
     } catch (error) {
@@ -55,7 +54,7 @@ export default function SignIn() {
     }
   }
   return (
-    <main className="min-h-[100dvh] flex items-center">
+    <main className="min-h-[100dvh] max-w-[400px] flex items-center">
       <div className="w-full">
         <div className="mb-[57px]">
           <h4 className="font-semibold text-3xl">Hello,</h4>

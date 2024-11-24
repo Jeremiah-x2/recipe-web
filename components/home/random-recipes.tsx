@@ -32,7 +32,7 @@ export default function RandomRecipes() {
       : `type=${recipeType.toLowerCase()}&number=5`
   );
   return (
-    <div className="mt-4">
+    <div className="mt-4 min-h-[150px]">
       {data && <RandomRecipesItem recipes={data} />}
       {isLoading && (
         <div className="flex gap-[10px] overflow-auto w-full">

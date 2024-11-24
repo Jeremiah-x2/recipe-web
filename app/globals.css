@@ -84,4 +84,7 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  main {
+    @apply max-w-[600px] mx-auto;
+  }
 }

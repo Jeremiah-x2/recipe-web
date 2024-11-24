@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { auth, db } from "@/config/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { Plus } from "lucide-react";
+import { PlusSquare } from "lucide-react";
 import React, { FormEvent, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 
@@ -110,8 +110,8 @@ export default function AddRecipe() {
                 </div>
               )}
               <Dialog>
-                <DialogTrigger className="bg-primary100 mt-4 w-full text-center flex justify-center py-2 rounded-lg">
-                  <Plus stroke="white" />
+                <DialogTrigger className="bg-primary100 space-x-4 flex gap-4 font-semibold text-white mt-4 w-full text-center  justify-center py-2 rounded-lg">
+                  Add Ingredient <PlusSquare stroke="white" />
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
@@ -141,8 +141,8 @@ export default function AddRecipe() {
                 </div>
               )}
               <Dialog>
-                <DialogTrigger className="bg-primary100 mt-4 w-full text-center flex justify-center py-2 rounded-lg">
-                  <Plus stroke="white" />
+                <DialogTrigger className="bg-primary100 gap-4 text-white font-semibold mt-4 w-full text-center flex justify-center py-2 rounded-lg">
+                  Add Step <PlusSquare stroke="white" />
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
@@ -171,7 +171,7 @@ export default function AddRecipe() {
   );
 }
 
-export function AddIngredient({
+function AddIngredient({
   setIngredients,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -233,7 +233,7 @@ export function AddIngredient({
   );
 }
 
-export function AddProcedure({
+function AddProcedure({
   setProcedures,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
