@@ -11,8 +11,8 @@ export default function Logout() {
       onClick={async () => {
         try {
           const logOut = await signOut(auth);
-          redirect("/");
           console.log(logOut);
+          redirect("/");
         } catch (error) {
           console.log(error);
         }
