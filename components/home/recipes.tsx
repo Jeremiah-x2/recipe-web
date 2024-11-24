@@ -32,9 +32,11 @@ export default function Recipes() {
           </Link>
         ))}
       </div>
-      <Button onClick={() => setNum((prev: number) => prev + 20)}>
-        See More
-      </Button>
+      <div className="flex justify-center py-3">
+        <Button onClick={() => setNum((prev: number) => prev + 20)}>
+          See More
+        </Button>
+      </div>
     </div>
   );
 }
